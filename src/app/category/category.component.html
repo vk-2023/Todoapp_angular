@@ -1,0 +1,79 @@
+<link
+  rel="stylesheet"
+  href="http://netdna.bootstrapcdn.com/font-awesome/6.2.1/css/font-awesome.min.css"
+/>
+
+<div class="row justify-content-center md-3">
+  <div class="col-md-4 text-center">
+    <h1>TODO CATEGORIES</h1>
+    <p class="text-info">
+      Manage your Categories and organize Todos
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form #f="ngForm" (ngSubmit)="addCategory(f)" class="form-inline">
+      <div class="col-md-10 form-group">
+        <input
+          [(ngModel)]="categoryText"
+          (ngModelChange)="emptyCheck($event)"
+          type="text"
+          placeholder="Add New Categories here"
+          name="categoryName"
+          class="form-control-plaintext border drop-shadow my-3"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary col-md-2 btn-todo btn-block drop-shadow"
+        *ngIf="!isUpdate"
+        [disabled]="isEmpty"
+      >
+        Add
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary col-md-2 btn-todo btn-block drop-shadow"
+        *ngIf="isUpdate"
+        (click)="addUpdatedCategory()"
+      >
+        Update
+      </button>
+
+      <!-- <div class="text-danger ml-3">
+            Category is Required ..
+          </div>
+   -->
+    </form>
+  </div>
+</div>
+
+<div class="row categories-list" *ngIf="categories!=null">
+  <div class="col-md-3" *ngFor="let category of categories">
+    <div class="card drop-shadow" >
+      <div class="card-body">
+        <div class="card-top">
+          <div class="float-left">
+            <div class="badge badge-primary">CATEGORY</div>
+          </div>
+          <div class="float-right cat-tools">
+            <button class="update-category" (click)="updateCategory(category)">Update</button>
+            <button class="delete-category" (click)="deleteCategory(category)">Delete</button>
+
+          </div>
+        </div>  
+
+        <div class="todo-content" routerLink="/todo/{{category.cat_id}}">
+          <h3>{{ category.cat_name }}</h3>
+          <small class="text-secondary">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </small>
+        </div>
+        <span class="badge badge-success todosCnt">{{ category.todosCount }} - Todos</span>
+        <!-- <span class="badge badge-danger todosCnt">{{ category.todosCount }} - Todos UnDone</span> -->
+      </div>
+    </div>
+  </div>
+</div>

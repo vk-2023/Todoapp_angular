@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row justify-content-center md-3 cat-name-container">
+    <div class="col-md-4 text-center ">
+      <button type="button" class="btn btn-outline-dark back-btn" [routerLink]="['/']" >Back</button>
+      <h1>{{catName}}</h1>
+      <p class="text-info">
+        Organize your Todos and make your life easier
+      </p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <form class="form-inline" (ngSubmit)="addTodo()">
+        <div class="col-md-10 form-group">
+          <input
+            type="text"
+            placeholder="Add New Todos here"
+            name="todoText"
+            class="form-control-plaintext border drop-shadow"
+            [(ngModel)]="todoText"
+            (ngModelChange)="emptyCheck($event)"
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary col-md-2 btn-todo btn-block drop-shadow"
+          [disabled]="isEmpty"
+        >
+          Add
+        </button>
+  
+        <!-- <div class="text-danger ml-3">
+              Category is Required ..
+            </div>
+     -->
+      </form>
+    </div>
+  </div>
+  
+  <div class="todos">
+    <h3 *ngIf="selTodo.length===0">No TODOs to Display!! Click on ADD button Above to add a new Todo</h3>
+    <h2 *ngIf="selTodo.length>0">Todos</h2>
+    <div *ngFor="let todo of selTodo">
+      <!-- <p>{{todo.cat_id}}</p> -->
+      <div class="todo">
+        <span class="todo-text" [ngClass]="{ 'strike-through': todo.isDone }">{{
+          todo.data
+        }}</span>
+  
+        <!-- using *ngIf twice  -->
+        <!-- <button
+          class="done-todo todo-tools"
+          (click)="doneTodo(todo.todo_id)"
+          *ngIf="!todo.isDone"
+        >
+          Done
+        </button>
+        <button
+          class="undone-todo todo-tools"
+          (click)="undoneTodo(todo.todo_id)"
+          *ngIf="todo.isDone"
+        > -->
+  
+        <!-- using "else" with *ngIf to make component more readable -->
+        <button
+          class="done-todo todo-tools"
+          (click)="doneTodo(todo.todo_id)"
+          *ngIf="!todo.isDone; else undoneButton"
+        >
+          Done
+        </button>
+        <ng-template #undoneButton>
+          <button
+          class="undone-todo todo-tools"
+          (click)="undoneTodo(todo.todo_id)"
+        >
+          UnDone
+        </button>
+        </ng-template>
+        <button class="delete-todo todo-tools" (click)="deleteTodo(todo.todo_id)">
+          Delete
+        </button>
+      </div>
+      <br />
+    </div>
+  </div>
+</div>

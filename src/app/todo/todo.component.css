@@ -1,0 +1,109 @@
+.cat-name-container{
+  position: relative;
+}
+
+.back-btn{
+  position: absolute;
+  left: 0;
+  width: 120px;
+}
+
+.todo-list{
+    margin-top: 50px;
+  }
+  
+  .todo-list .card{
+    border: none;
+    margin-top: 5px;
+    background-color: #f8f8f8;
+  }
+  
+  .todo-tools{
+    display: none;
+  }
+  
+  .todo-tools i {
+    margin: 0px 5px;
+    cursor: pointer;
+  }
+  
+  .todo-list .card:hover {
+    cursor: pointer;
+    width: 600px;
+    height: 80px;
+    margin-left: -30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+  
+  .todo-list .card:hover .todo-tools {
+    display: inline;
+  }
+  
+  i {
+    margin-right: 20px;
+  }
+  
+  
+  hr {
+    display: block;
+    margin-top: -8px;
+    margin-left: 30px;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    background-color: black;
+  }
+
+  .todos{
+    margin-top: 30px;
+  }
+
+  .todo{
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    justify-content: center;
+    /* border: 2px solid darkblue; */
+    background-color: #e9eeff;
+    width: fit-content;
+    padding: 10px;
+  }
+
+  .todo-text{
+  font-size: 25px;
+  }
+
+ .strike-through{
+  text-decoration: line-through;
+  color: #7a7474;
+ }
+
+  .todo-tools{
+    display: none;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 0 5px;
+  }
+
+  .done-todo{
+    background: rgb(0, 155, 0);
+  }
+
+  .undone-todo{
+    background: rgb(190, 143, 14);
+  }
+
+  .delete-todo{
+    background: red;
+  }
+
+  .todo:hover{
+    cursor: pointer;
+
+  }
+
+  .todo:hover .todo-tools{
+    display: inline;
+  }
